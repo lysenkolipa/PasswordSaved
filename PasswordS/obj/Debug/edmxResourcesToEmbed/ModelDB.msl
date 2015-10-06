@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PasswordDBModelStoreContainer" CdmEntityContainer="PasswordDBEntities">
+    <EntitySetMapping Name="AuthorizeInform">
+      <EntityTypeMapping TypeName="PasswordDBModel.AuthorizeInform">
+        <MappingFragment StoreEntitySet="AuthorizeInform">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="UserAuthorize_User" ColumnName="UserAuthorize_User" />
+          <ScalarProperty Name="Other" ColumnName="Other" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAuthorize">
+      <EntityTypeMapping TypeName="PasswordDBModel.UserAuthorize">
+        <MappingFragment StoreEntitySet="UserAuthorize">
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

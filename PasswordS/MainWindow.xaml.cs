@@ -23,6 +23,19 @@ namespace PasswordS
         public MainWindow()
         {
             InitializeComponent();
+            PasswordDBEntities db = new PasswordDBEntities();
+            // Change db
+            //var user = new UserAuthorize()
+            //{
+            //    Login = "qwerty",
+            //    Password = "qwerty1"
+            //};
+            //db.UserAuthorize.Add(user);
+            //db.SaveChanges();
+            // edit
+            var toChangeUser = (from item in db.UserAuthorize where item.Login == "admin" select item).FirstOrDefault();
+            toChangeUser.Password = "pass";
+            db.SaveChanges();
         }
     }
 }

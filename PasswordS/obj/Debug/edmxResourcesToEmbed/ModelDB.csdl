@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PasswordDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AuthorizeInform">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserAuthorize_User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Other" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserAuthorize" Relationship="Self.FK_AuthorizeInform_UserAuthorize" FromRole="AuthorizeInform" ToRole="UserAuthorize" />
+  </EntityType>
+  <EntityType Name="UserAuthorize">
+    <Key>
+      <PropertyRef Name="Login" />
+    </Key>
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AuthorizeInform" Relationship="Self.FK_AuthorizeInform_UserAuthorize" FromRole="UserAuthorize" ToRole="AuthorizeInform" />
+  </EntityType>
+  <Association Name="FK_AuthorizeInform_UserAuthorize">
+    <End Role="UserAuthorize" Type="Self.UserAuthorize" Multiplicity="1" />
+    <End Role="AuthorizeInform" Type="Self.AuthorizeInform" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAuthorize">
+        <PropertyRef Name="Login" />
+      </Principal>
+      <Dependent Role="AuthorizeInform">
+        <PropertyRef Name="UserAuthorize_User" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PasswordDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AuthorizeInform" EntityType="Self.AuthorizeInform" />
+    <EntitySet Name="UserAuthorize" EntityType="Self.UserAuthorize" />
+    <AssociationSet Name="FK_AuthorizeInform_UserAuthorize" Association="Self.FK_AuthorizeInform_UserAuthorize">
+      <End Role="UserAuthorize" EntitySet="UserAuthorize" />
+      <End Role="AuthorizeInform" EntitySet="AuthorizeInform" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
